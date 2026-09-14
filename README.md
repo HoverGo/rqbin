@@ -77,16 +77,35 @@ go run ./cmd/rqbin
 
 Миграции применяются при старте приложения из папки `migrations/`.
 
+## Версия
+
+Версия проекта живёт в файле [`VERSION`](VERSION) в корне репозитория.
+
+При релизе:
+
+1. Обнови `VERSION` (например `0.2.0`)
+2. Закоммить
+3. Поставь git-тег с тем же номером:
+
+```bash
+git tag v0.2.0
+git push origin v0.2.0
+```
+
+В Docker-образ версия попадает при сборке через `-ldflags`. При `go run` читается файл `VERSION` из корня.
+
 ## Структура
 
 ```
-cmd/rqbin/          точка входа
-internal/config/    конфиг из env
-internal/store/     работа с Postgres
-internal/handler/   HTTP и страницы
-migrations/         SQL-схема
-web/templates/      HTML
-web/static/         CSS
+VERSION               версия проекта (источник правды в git)
+cmd/rqbin/            точка входа
+internal/config/      конфиг из env
+internal/store/       работа с Postgres
+internal/handler/     HTTP и страницы
+internal/version/     чтение версии
+migrations/           SQL-схема
+web/templates/        HTML
+web/static/           CSS
 ```
 
 ## Заметки

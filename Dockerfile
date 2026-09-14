@@ -11,7 +11,10 @@ RUN go mod download
 
 COPY . .
 
-RUN CGO_ENABLED=0 GOOS=linux go build -o /out/rqbin ./cmd/rqbin
+RUN VERSION="$(tr -d '[:space:]' < VERSION)" \
+	&& CGO_ENABLED=0 GOOS=linux go build \
+		-ldflags="-X github.com/hovergo/rqbin/internal/version.Version=${VERSION}" \
+		-o /out/rqbin ./cmd/rqbin
 
 FROM alpine:3.21
 

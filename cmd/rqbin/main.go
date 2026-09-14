@@ -16,6 +16,7 @@ import (
 	"github.com/hovergo/rqbin/internal/config"
 	"github.com/hovergo/rqbin/internal/handler"
 	"github.com/hovergo/rqbin/internal/store"
+	"github.com/hovergo/rqbin/internal/version"
 	"github.com/jackc/pgx/v5/pgxpool"
 )
 
@@ -29,6 +30,8 @@ func main() {
 }
 
 func run(log *slog.Logger) error {
+	log.Info("starting rqbin", "version", version.Current())
+
 	cfg, err := config.Load()
 	if err != nil {
 		return fmt.Errorf("load config: %w", err)
