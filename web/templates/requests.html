@@ -1,0 +1,31 @@
+{{if not .Requests}}
+<p class="empty">Пока пусто. Отправь запрос на webhook URL.</p>
+{{else}}
+{{range .Requests}}
+<article class="request">
+  <header>
+    <span class="method">{{.Method}}</span>
+    <span class="meta">#{{.ID}} · {{formatTime .CreatedAt}} · {{.RemoteAddr}}</span>
+  </header>
+  <p class="path">
+    <code>{{.Path}}{{if .QueryString}}?{{.QueryString}}{{end}}</code>
+  </p>
+
+  <details open>
+    <summary>Headers</summary>
+    {{$headers := .Headers}}
+    <pre>{{range $key := headerKeys $headers}}{{$key}}: {{join (index $headers $key) ", "}}
+{{end}}</pre>
+  </details>
+
+  <details open>
+    <summary>Body</summary>
+    {{if .Body}}
+    <pre>{{.Body}}</pre>
+    {{else}}
+    <p class="muted">(пусто)</p>
+    {{end}}
+  </details>
+</article>
+{{end}}
+{{end}}

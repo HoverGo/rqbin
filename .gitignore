@@ -1,0 +1,23 @@
+# Binaries
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+/rqbin
+/bin/
+
+# Test
+*.test
+*.out
+coverage.*
+
+# IDE / OS
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+
+# Env
+.env
+.env.local

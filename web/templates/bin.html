@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>bin {{.Bin.ID}} - rqbin</title>
+  <link rel="stylesheet" href="/static/style.css">
+  <script src="https://unpkg.com/htmx.org@2.0.4"></script>
+</head>
+<body>
+  <header class="top">
+    <a class="brand" href="/">rqbin</a>
+    <span class="tagline">webhook inspector</span>
+  </header>
+  <main>
+    <section class="bin-page">
+      <h1>Bin <code>{{.Bin.ID}}</code></h1>
+      <p class="muted">Создан: {{formatTime .Bin.CreatedAt}}</p>
+
+      <div class="endpoint">
+        <label for="endpoint">Webhook URL</label>
+        <div class="endpoint-row">
+          <input id="endpoint" type="text" readonly value="{{.EndpointURL}}">
+          <button type="button" onclick="navigator.clipboard.writeText(document.getElementById('endpoint').value)">Копировать</button>
+        </div>
+        <p class="hint">Отправляй сюда любые методы, кроме GET. GET открывает эту страницу.</p>
+      </div>
+
+      <h2>Последние запросы</h2>
+      <div
+        id="requests"
+        hx-get="/b/{{.Bin.ID}}/requests"
+        hx-trigger="every 2s"
+        hx-swap="innerHTML"
+      >
+        {{template "requests.html" .}}
+      </div>
+    </section>
+  </main>
+</body>
+</html>

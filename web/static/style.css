@@ -1,0 +1,180 @@
+:root {
+  --bg: #f3efe6;
+  --ink: #1c1a16;
+  --muted: #6b6458;
+  --line: #d7d0c3;
+  --panel: #fffcf6;
+  --accent: #0f6a5a;
+  --accent-ink: #f7fffc;
+  --method: #8a3b12;
+  --shadow: 0 10px 30px rgba(28, 26, 22, 0.08);
+  --font: "Segoe UI", "IBM Plex Sans", sans-serif;
+  --mono: "IBM Plex Mono", "Cascadia Code", Consolas, monospace;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font);
+  color: var(--ink);
+  background:
+    radial-gradient(circle at top left, rgba(15, 106, 90, 0.12), transparent 40%),
+    linear-gradient(180deg, #efe8da 0%, var(--bg) 40%, #e7e1d4 100%);
+  min-height: 100vh;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.top {
+  display: flex;
+  align-items: baseline;
+  gap: 0.75rem;
+  padding: 1.25rem 1.5rem;
+}
+
+.brand {
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  font-size: 1.15rem;
+}
+
+.tagline {
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+main {
+  width: min(920px, calc(100% - 2rem));
+  margin: 0 auto 3rem;
+}
+
+.hero,
+.bin-page {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow);
+  border-radius: 18px;
+  padding: 2rem;
+}
+
+h1,
+h2 {
+  margin-top: 0;
+}
+
+.hero p,
+.hint,
+.muted,
+.empty {
+  color: var(--muted);
+}
+
+button,
+.endpoint-row button {
+  appearance: none;
+  border: 0;
+  background: var(--accent);
+  color: var(--accent-ink);
+  padding: 0.75rem 1.1rem;
+  border-radius: 10px;
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+button:hover {
+  filter: brightness(1.05);
+}
+
+.endpoint {
+  margin: 1.5rem 0 2rem;
+}
+
+.endpoint label {
+  display: block;
+  margin-bottom: 0.4rem;
+  font-weight: 600;
+}
+
+.endpoint-row {
+  display: flex;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+}
+
+.endpoint-row input {
+  flex: 1 1 280px;
+  padding: 0.75rem 0.9rem;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: #fff;
+  font-family: var(--mono);
+  font-size: 0.92rem;
+}
+
+.request {
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 1rem 1.1rem;
+  margin-bottom: 1rem;
+  background: #fff;
+}
+
+.request header {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem 1rem;
+  align-items: baseline;
+  margin-bottom: 0.5rem;
+}
+
+.method {
+  font-family: var(--mono);
+  font-weight: 700;
+  color: var(--method);
+}
+
+.meta,
+.path {
+  color: var(--muted);
+  font-size: 0.92rem;
+}
+
+pre {
+  margin: 0.5rem 0 0;
+  padding: 0.85rem;
+  background: #1c1a16;
+  color: #f4efe4;
+  border-radius: 10px;
+  overflow: auto;
+  font-family: var(--mono);
+  font-size: 0.86rem;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+details {
+  margin-top: 0.75rem;
+}
+
+summary {
+  cursor: pointer;
+  font-weight: 600;
+}
+
+code {
+  font-family: var(--mono);
+}
+
+@media (max-width: 640px) {
+  .hero,
+  .bin-page {
+    padding: 1.25rem;
+  }
+}
